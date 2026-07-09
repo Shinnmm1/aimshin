@@ -1,0 +1,439 @@
+repeat
+    task.wait()
+until game:IsLoaded()
+
+game:GetService('UserInputService')
+
+local u1 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?/`~'
+
+local function v4(p2)
+    local v3 = ''
+
+    for _ = 1, p2 do
+        v3 = v3 .. string.sub(u1, math.random(1, #u1), math.random(1, #u1))
+    end
+
+    return v3
+end
+
+local _ScreenGui = Instance.new('ScreenGui')
+
+_ScreenGui.Parent = game.CoreGui
+
+local _Frame = Instance.new('Frame')
+
+_Frame.Size = UDim2.new(0, 35, 0, 35)
+_Frame.Position = UDim2.new(0, 399.871, 0, 161)
+_Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+_Frame.BackgroundTransparency = 1
+_Frame.Visible = false
+_Frame.Parent = _ScreenGui
+
+local _UIStroke = Instance.new('UIStroke')
+
+_UIStroke.Thickness = 5
+_UIStroke.Color = Color3.fromRGB(0, 0, 0)
+_UIStroke.Parent = _Frame
+
+local function v15(p8, p9, p10, p11, p12, p13)
+    local _Frame2 = Instance.new('Frame')
+
+    _Frame2.Name = p8
+    _Frame2.Size = p11
+    _Frame2.Position = p10
+    _Frame2.BackgroundColor3 = Color3.fromRGB(54, 57, 62)
+    _Frame2.BackgroundTransparency = p13
+    _Frame2.Visible = p12
+    _Frame2.Parent = p9
+
+    return _Frame2
+end
+local function v23(p16, p17, p18, p19, p20, p21)
+    local _TextLabel = Instance.new('TextLabel')
+
+    _TextLabel.Name = p16
+    _TextLabel.Size = p19
+    _TextLabel.Position = p18
+    _TextLabel.BackgroundTransparency = 1
+    _TextLabel.Text = p20
+    _TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    _TextLabel.TextScaled = true
+    _TextLabel.Font = Enum.Font.PatrickHand
+    _TextLabel.Parent = p17
+    _TextLabel.Rotation = p21
+
+    return _TextLabel
+end
+local function v32(p24, p25, p26, p27, p28, p29, p30)
+    local _TextButton = Instance.new('TextButton')
+
+    _TextButton.Name = p24
+    _TextButton.Size = p27
+    _TextButton.Position = p26
+    _TextButton.Text = p29
+    _TextButton.BackgroundColor3 = Color3.fromRGB(54, 57, 62)
+    _TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    _TextButton.BackgroundTransparency = p30
+    _TextButton.Parent = p25
+    _TextButton.Visible = p28
+
+    return _TextButton
+end
+local function v37(p33, p34, p35)
+    local _UICorner = Instance.new('UICorner')
+
+    _UICorner.Name = p33
+    _UICorner.Parent = p34
+    _UICorner.CornerRadius = p35
+
+    return _UICorner
+end
+
+local _mainFrame = v15('mainFrame', _ScreenGui, UDim2.new(0, 202, 0, -10), UDim2.new(0, 250, 0, 43), true, 0.1)
+
+_mainFrame.BorderSizePixel = 0
+
+local _mainFrame1 = v15('mainFrame1', _mainFrame, UDim2.new(0, 1.5, 0, 53), UDim2.new(0, 247, 0, 190), false, 0.1)
+local _AimTargetFrame = v15('AimTargetFrame', _mainFrame1, UDim2.new(0, 10, 0, 115), UDim2.new(0, 195, 0, 60), false, 0.05)
+local _settingsFrame = v15('settingsFrame', _mainFrame, UDim2.new(0, 317, 0, 53), UDim2.new(0, 247, 0, 190), false, 0.05)
+local _sliderFrame = v15('sliderFrame', _settingsFrame, UDim2.new(0, 10, 0, 105), UDim2.new(0, 227, 0, 20), true, 0)
+
+_sliderFrame.Active = false
+_sliderFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+
+local _slider = v15('slider', _sliderFrame, UDim2.new(0.3, -5, 0, -5), UDim2.new(0, 22, 0, 35), true, 0)
+
+_slider.Active = false
+
+local _sliderFill = v15('sliderFill', _sliderFrame, UDim2.new(0, 0, 0, 0), UDim2.new(0, 0, 1, 0), true, 0)
+
+_sliderFill.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+v23('Text', _mainFrame, UDim2.new(0, 5, 0, 10), UDim2.new(0, 120, 0, 20), 'Shin Aimbot', 0).Font = Enum.Font.ArimoBold
+
+local _Button = v32('Button', _mainFrame, UDim2.new(0, 204, 0, 0), UDim2.new(0, 43, 0, 43), true, '', 1)
+local _aimActiveButton = v32('aimActiveButton', _mainFrame1, UDim2.new(0, 10, 0, 20), UDim2.new(0, 195, 0, 38), true, 'Aim Active', 0)
+local _aimTargetButton = v32('aimTargetButton', _mainFrame1, UDim2.new(0, 10, 0, 80), UDim2.new(0, 195, 0, 38), true, 'HEAD', 0)
+local _HEAd = v32('HEAd', _AimTargetFrame, UDim2.new(0, 10, 0, 10), UDim2.new(0, 190, 0, 20), false, 'HEAD', 0)
+local _CHEST = v32('CHEST', _AimTargetFrame, UDim2.new(0, 10, 0, 40), UDim2.new(0, 190, 0, 20), false, 'CHEST', 0)
+local _CHEST2 = v32('CHEST', _AimTargetFrame, UDim2.new(0, 10, 0, 10), UDim2.new(0, 190, 0, 20), true, 'CHEST', 0)
+local _PelvisS = v32('PelvisS', _AimTargetFrame, UDim2.new(0, 10, 0, 40), UDim2.new(0, 190, 0, 20), true, 'PELVIS', 0)
+local _aimActiveRedGreen = v15('aimActiveRedGreen', _mainFrame1, UDim2.new(0, 210, 0, 24), UDim2.new(0, 30, 0, 30), true, 0)
+
+_aimActiveRedGreen.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+
+local _nextButton = v32('nextButton', _mainFrame1, UDim2.new(0, 257, 0, 65), UDim2.new(0, 50, 0, 50), false, '>', 0)
+local _Text1 = v23('Text1', _Button, UDim2.new(0, -9.5, 0, 10), UDim2.new(0, 60, 0, 20), '^', 180)
+
+_Text1.Font = Enum.Font.ArimoBold
+_Text1.TextSize = 23
+
+local _Text2 = v23('Text2', _mainFrame1, UDim2.new(0, 36, 0, 60), UDim2.new(0, 140, 0, 20), 'Where should I aim?', 0)
+
+_Text2.Font = Enum.Font.ArimoBold
+_Text2.TextSize = 23
+
+v23('Text3', _settingsFrame, UDim2.new(0, 10, 0, 37), UDim2.new(0, 140, 0, 30), 'Circle color, RGB code example (255,255,255)', 0)
+
+_Text2.Font = Enum.Font.ArimoBold
+_Text2.TextSize = 23
+
+local _Text4 = v23('Text4', _settingsFrame, UDim2.new(0, 90, 0, 10), UDim2.new(0, 70, 0, 20), 'SETT\u{130}NGS', 0)
+
+_Text4.Font = Enum.Font.ArimoBold
+_Text4.TextSize = 23
+
+local _Text5 = v23('Text5', _settingsFrame, UDim2.new(0, 10, 0, 70), UDim2.new(0, 80, 0, 20), 'Aimbot Fov: ', 0)
+
+_Text5.Font = Enum.Font.ArimoBold
+_Text5.TextSize = 23
+
+local _Text6 = v23('Text6', _settingsFrame, UDim2.new(0, 82, 0, 70), UDim2.new(0, 60, 0, 20), '150', 0)
+
+_Text6.Font = Enum.Font.ArimoBold
+_Text6.TextSize = 23
+
+local _TextBox2 = (function(p59, p60, p61, p62, p63, p64, p65)
+    local _TextBox = Instance.new('TextBox')
+
+    _TextBox.Name = p59
+    _TextBox.Size = p62
+    _TextBox.Position = p61
+    _TextBox.Text = p64
+    _TextBox.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+    _TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+    _TextBox.BackgroundTransparency = p65
+    _TextBox.Parent = p60
+    _TextBox.Visible = p63
+
+    return _TextBox
+end)('TextBox', _settingsFrame, UDim2.new(0, 185, 0, 30), UDim2.new(0, 40, 0, 40), true, '0, 0, 0', 0)
+
+_TextBox2.Font = Enum.Font.ArialBold
+_TextBox2.TextSize = 10
+_TextBox2.BorderSizePixel = 0
+
+v37('uic', _mainFrame, UDim.new(0, 13))
+v37('uic1', _mainFrame1, UDim.new(0, 12))
+v37('uic2', _aimActiveButton, UDim.new(0, 12))
+v37('uic3', _aimActiveRedGreen, UDim.new(1, 1))
+v37('uic4', _aimTargetButton, UDim.new(0, 12))
+v37('uic5', _HEAd, UDim.new(0, 12))
+v37('uic6', _CHEST, UDim.new(0, 12))
+v37('uic7', _CHEST2, UDim.new(0, 12))
+v37('uic8', _PelvisS, UDim.new(0, 12))
+v37('uic9', _AimTargetFrame, UDim.new(0, 12))
+v37('uic10', _Frame, UDim.new(1, 0))
+v37('uic11', _nextButton, UDim.new(0, 13))
+v37('uic12', _settingsFrame, UDim.new(0, 12))
+v37('uic13', _TextBox2, UDim.new(0, 12))
+
+local u68 = {
+    {
+        Head = true,
+        Chest = false,
+        Pelvis = false,
+    },
+}
+local u69 = false
+local u70 = false
+
+_Button.MouseButton1Click:Connect(function()
+    if u70 ~= false then
+        u70 = false
+        _Text1.Rotation = 180
+        _mainFrame1.Visible = false
+        _nextButton.Visible = false
+        _nextButton.Text = '>'
+        u69 = false
+        _settingsFrame.Visible = false
+    else
+        u70 = true
+        _Text1.Rotation = 0
+        _mainFrame1.Visible = true
+        _nextButton.Visible = true
+        _nextButton.Text = '>'
+        u69 = false
+    end
+end)
+_nextButton.MouseButton1Click:Connect(function()
+    if u69 ~= false then
+        _nextButton.Text = '>'
+        _settingsFrame.Visible = false
+        u69 = false
+    else
+        _nextButton.Text = '<'
+        _settingsFrame.Visible = true
+        u69 = true
+    end
+end)
+
+local u71 = false
+
+_aimTargetButton.MouseButton1Click:Connect(function()
+    u71 = not u71
+    _AimTargetFrame.Visible = u71
+end)
+_CHEST.MouseButton1Click:Connect(function()
+    _PelvisS.Visible = false
+    _HEAd.Visible = true
+    _CHEST2.Visible = false
+    _CHEST.Visible = true
+    u68[1].Head = false
+    u68[1].Chest = true
+    u68[1].Pelvis = false
+    _aimTargetButton.Text = 'CHEST'
+    u71 = false
+    _AimTargetFrame.Visible = false
+end)
+_CHEST2.MouseButton1Click:Connect(function()
+    _PelvisS.Visible = true
+    _HEAd.Visible = true
+    _CHEST2.Visible = false
+    _CHEST.Visible = false
+    u68[1].Head = false
+    u68[1].Chest = true
+    u68[1].Pelvis = false
+    _aimTargetButton.Text = 'CHEST'
+    u71 = false
+    _AimTargetFrame.Visible = false
+end)
+_PelvisS.MouseButton1Click:Connect(function()
+    _PelvisS.Visible = false
+    _HEAd.Visible = true
+    _CHEST2.Visible = false
+    _CHEST.Visible = true
+    u68[1].Head = false
+    u68[1].Chest = false
+    u68[1].Pelvis = true
+    _aimTargetButton.Text = 'PELVIS'
+    u71 = false
+    _AimTargetFrame.Visible = false
+end)
+_HEAd.MouseButton1Click:Connect(function()
+    _CHEST2.Visible = true
+    _PelvisS.Visible = true
+    _HEAd.Visible = false
+    _CHEST.Visible = false
+    u68[1].Head = true
+    u68[1].Chest = false
+    u68[1].Pelvis = false
+    _aimTargetButton.Text = 'HEAD'
+    u71 = false
+    _AimTargetFrame.Visible = false
+end)
+
+local u72 = false
+local _LocalPlayer = game.Players.LocalPlayer
+local _CurrentCamera = game.Workspace.CurrentCamera
+
+local function u86()
+    local _huge = math.huge
+    local v76, v77, v78 = pairs(game.Players:GetPlayers())
+    local v79 = nil
+
+    while true do
+        local v80
+
+        v78, v80 = v76(v77, v78)
+
+        if v78 == nil then
+            break
+        end
+        if v80 ~= _LocalPlayer and v80.Character and v80.Character:FindFirstChild('Head') then
+            local v81, v82 = _CurrentCamera:WorldToScreenPoint(v80.Character.Head.Position)
+            local _Magnitude = (Vector2.new(v81.X, v81.Y) - Vector2.new(_CurrentCamera.ViewportSize.X / 2, _CurrentCamera.ViewportSize.Y / 2)).Magnitude
+
+            if v82 and _Magnitude < _huge and _Magnitude <= _Frame.Size.X.Offset / 2 then
+                local v84 = Ray.new(_CurrentCamera.CFrame.Position, (v80.Character.Head.Position - _CurrentCamera.CFrame.Position).unit * 3000)
+                local v85 = game.Workspace:FindPartOnRay(v84, _LocalPlayer.Character, false, true)
+
+                if v85 then
+                    if v85:IsDescendantOf(v80.Character) then
+                        v79 = v80
+                        _huge = _Magnitude
+                    end
+                end
+            end
+        end
+    end
+
+    return v79
+end
+local function v89()
+    if u72 then
+        local v87 = u86()
+
+        if v87 and v87.Character then
+            local v88 = nil
+
+            if u68[1].Head ~= true or not v87.Character:FindFirstChild('Head') then
+                if u68[1].Chest ~= true or not v87.Character:FindFirstChild('HumanoidRootPart') then
+                    if u68[1].Pelvis and v87.Character:FindFirstChild('LowerTorso') then
+                        v88 = v87.Character.LowerTorso
+                    end
+                else
+                    v88 = v87.Character.HumanoidRootPart
+                end
+            else
+                v88 = v87.Character.Head
+            end
+            if v88 then
+                _CurrentCamera.CFrame = CFrame.new(_CurrentCamera.CFrame.Position, v88.Position)
+            end
+        end
+    end
+end
+
+game:GetService('RunService').RenderStepped:Connect(v89)
+
+local u90 = false
+
+_aimActiveButton.MouseButton1Click:Connect(function()
+    if u90 ~= false then
+        u90 = false
+        _Frame.Visible = false
+        u72 = false
+        _aimActiveRedGreen.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    else
+        u90 = true
+        _Frame.Visible = true
+        u72 = true
+        _aimActiveRedGreen.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    end
+end)
+
+local function u98(p91)
+    local _dsdsd, v93, v94 = p91:match('(%d+),%s*(%d+),%s*(%d+)')
+    local v95 = tonumber(_dsdsd)
+    local v96 = tonumber(v93)
+    local v97 = tonumber(v94)
+
+    if v95 and (v96 and v97) and (0 <= v95 and v95 <= 255 and (0 <= v96 and v96 <= 255)) and (0 <= v97 and v97 <= 255) then
+        return true, Color3.fromRGB(v95, v96, v97)
+    else
+        return false, Color3.fromRGB(0, 0, 0)
+    end
+end
+
+_TextBox2.FocusLost:Connect(function(p99)
+    if p99 then
+        local v100, v101 = u98(_TextBox2.Text)
+
+        if v100 then
+            _UIStroke.Color = v101
+        else
+            _UIStroke.Color = Color3.fromRGB(0, 0, 0)
+        end
+    end
+end)
+
+local function u105(p102)
+    local v103 = math.clamp((p102.Position.X - _sliderFrame.AbsolutePosition.X) / _sliderFrame.AbsoluteSize.X, 0, 1)
+    local v104 = math.floor(v103 * 500)
+
+    _slider.Position = UDim2.new(v103, -5, 0, -5)
+    _sliderFill.Size = UDim2.new(v103, 0, 1, 0)
+    _Text6.Text = tostring(v104)
+    _Frame.Size = UDim2.new(0, v104, 0, v104)
+end
+
+local u106 = false
+
+_slider.InputBegan:Connect(function(p107)
+    if p107.UserInputType == Enum.UserInputType.MouseButton1 or p107.UserInputType == Enum.UserInputType.Touch then
+        u106 = true
+
+        u105(p107)
+    end
+end)
+_slider.InputChanged:Connect(function(p108)
+    if u106 and (p108.UserInputType == Enum.UserInputType.MouseMovement or p108.UserInputType == Enum.UserInputType.Touch) then
+        u105(p108)
+    end
+end)
+_slider.InputEnded:Connect(function(p109)
+    if p109.UserInputType == Enum.UserInputType.MouseButton1 or p109.UserInputType == Enum.UserInputType.Touch then
+        u106 = false
+    end
+end)
+u105({
+    Position = Vector3.new(_sliderFrame.AbsolutePosition.X + _sliderFrame.AbsoluteSize.X * 0.3, 0, 0),
+})
+
+local v110 = {_ScreenGui}
+
+while task.wait(2) do
+    local v111, v112, v113 = pairs(v110)
+
+    while true do
+        local v114
+
+        v113, v114 = v111(v112, v113)
+
+        if v113 == nil then
+            break
+        end
+
+        v114.Name = v4(15)
+    end
+end
